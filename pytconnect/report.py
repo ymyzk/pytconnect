@@ -6,6 +6,7 @@ from __future__ import unicode_literals
 
 from datetime import date
 from enum import Enum
+import operator
 
 
 class ProductTypeIdentifier(Enum):
@@ -57,7 +58,6 @@ class ReportRecord(object):
         self.developer = kwargs.get('developer', '')
         self.title = kwargs.get('title', '')
         self.version = kwargs.get('version', tuple())
-        self.sku = kwargs.get('sku', '')
         self.product_type_identifier = kwargs.get('product_type_identifier',
                                                   '')
         self.units = kwargs.get('units', 0)
@@ -211,6 +211,77 @@ class Report(object):
 
     def append(self, record):
         self.records.append(record)
+
+    _filter_kwargs = {
+        'provider',
+        'provider_country',
+        'sku',
+        'developer',
+        'title',
+        'version',
+        'product_type_identifier',
+        'units',
+        'developer_proceeds',
+        'begin_date',
+        'end_date',
+        'customer_currency',
+        'country_code',
+        'currency_of_proceeds',
+        'apple_identifier',
+        'customer_price',
+        'promo_code',
+        'parent_identifier',
+        'subscription',
+        'period',
+        'category',
+        'cmb'
+    }
+
+    _filter_operators = {
+        'eq': operator.eq,
+        'gt': operator.gt,
+        'gte': operator.ge,
+        'lt': operator.lt,
+        'lte': operator.le
+    }
+
+    def filter(self, **kwargs):
+        records = self.records
+
+        for kwarg, value in kwargs.items():
+            kw = kwarg.split('__')
+            if kw[0] in self._filter_kwargs:
+                op = self._filter_operators.get(kw[-1], operator.eq)
+                records = filter(lambda r: op(getattr(r, kw[0]), value),
+                                 records)
+
+        if 'date' in kwargs:
+            d = kwargs['date']
+            records = filter(lambda r: r.begin_date <= d <= r.end_date,
+                             records)
+
+        if 'date__gt' in kwargs:
+            records = filter(lambda r: kwargs['date__gt'] < r.end_date,
+                             records)
+
+        if 'date__gte' in kwargs:
+            records = filter(lambda r: kwargs['date__gte'] <= r.end_date,
+                             records)
+
+        if 'date__lt' in kwargs:
+            records = filter(lambda r: r.begin_date < kwargs['date__lt'],
+                             records)
+
+        if 'date__lte' in kwargs:
+            records = filter(lambda r: r.begin_date <= kwargs['date__lte'],
+                             records)
+
+        return Report(list(records))
+
+    def __add__(self, other):
+        if isinstance(other, Report):
+            return Report(self.records + other.records)
+        raise NotImplemented
 
     # Properties
 
