@@ -87,7 +87,7 @@ class ReportRecord(object):
         'Currency of Proceeds': 'currency_of_proceeds',
         'Parent Identifier': 'parent_identifier',
         'Category': 'category',
-        'cmb': ''
+        'CMB': 'cmb'
     }
 
     _dict_to_kwargs_int = {
@@ -178,19 +178,26 @@ class ReportRecord(object):
 
         if 'Product Type Identifier' in d:
             ptis = d['Product Type Identifier']
-            pti = ReportRecord._str_to_product_type_identifier[ptis]
-            kwargs['product_type_identifier'] = pti
+            if ptis in ReportRecord._str_to_product_type_identifier:
+                pti = ReportRecord._str_to_product_type_identifier[ptis]
+                kwargs['product_type_identifier'] = pti
 
         if 'Promo Code' in d:
-            pc = ReportRecord._str_to_promotional_code[d['Promo Code']]
-            kwargs['promo_code'] = pc
+            pcs = d['Promo Code']
+            if pcs in ReportRecord._str_to_promotional_code:
+                pc = ReportRecord._str_to_promotional_code[pcs]
+                kwargs['promo_code'] = pc
 
         if 'Subscription' in d:
-            s = ReportRecord._str_to_subscription[d['Subscription']]
-            kwargs['subscription'] = s
+            ss = d['Subscription']
+            if ss in ReportRecord._str_to_subscription:
+                s = ReportRecord._str_to_subscription[ss]
+                kwargs['subscription'] = s
 
         if 'Period' in d:
-            kwargs['period'] = ReportRecord._str_to_period[d['Period']]
+            ps = d['Period']
+            if ps in ReportRecord._str_to_period:
+                kwargs['period'] = ReportRecord._str_to_period[ps]
 
         return ReportRecord(**kwargs)
 
