@@ -211,3 +211,86 @@ class Report(object):
 
     def append(self, record):
         self.records.append(record)
+
+    # Properties
+
+    @property
+    def providers(self):
+        return sorted(set(map(lambda r: r.provider, self.records)))
+
+    @property
+    def provider_countries(self):
+        return sorted(set(map(lambda r: r.provider_country, self.records)))
+
+    @property
+    def developers(self):
+        return sorted(set(map(lambda r: r.developer, self.records)))
+
+    @property
+    def titles(self):
+        return sorted(set(map(lambda r: r.title, self.records)))
+
+    @property
+    def versions(self):
+        return sorted(set(map(lambda r: r.version, self.records)))
+
+    @property
+    def skus(self):
+        return sorted(set(map(lambda r: r.sku, self.records)))
+
+    @property
+    def product_type_identifiers(self):
+        return list(set(map(lambda r: r.product_type_identifier,
+                            self.records)))
+
+    @property
+    def units(self):
+        return sum(map(lambda r: r.units, self.records))
+
+    @property
+    def developer_proceeds(self):
+        return sorted(set(map(lambda r: r.developer_proceeds, self.records)))
+
+    @property
+    def customer_currencies(self):
+        return sorted(set(map(lambda r: r.customer_currency, self.records)))
+
+    @property
+    def country_codes(self):
+        return sorted(set(map(lambda r: r.country_codes, self.records)))
+
+    @property
+    def currencies_of_proceeds(self):
+        return sorted(set(map(lambda r: r.currency_of_proceeds, self.records)))
+
+    @property
+    def apple_identifiers(self):
+        return sorted(set(map(lambda r: r.apple_identifier, self.records)))
+
+    @property
+    def customer_prices(self):
+        return sorted(set(map(lambda r: r.customer_price, self.records)))
+
+    @property
+    def promo_codes(self):
+        return sorted(set(map(lambda r: r.promo_code, self.records)))
+
+    @property
+    def parent_identifiers(self):
+        return sorted(set(map(lambda r: r.parent_identifier, self.records)))
+
+    @property
+    def subscriptions(self):
+        return sorted(set(map(lambda r: r.subscription, self.records)))
+
+    @property
+    def periods(self):
+        return sorted(set(map(lambda r: r.period, self.records)))
+
+    @property
+    def categories(self):
+        return sorted(set(map(lambda r: r.category, self.records)))
+
+    @property
+    def cmbs(self):
+        return sorted(set(map(lambda r: r.cmb, self.records)))
