@@ -9,7 +9,7 @@ from pytconnect.report import (Period, ProductTypeIdentifier, PromotionalCode,
                                ReportRecord, Subscription)
 
 
-class RecordTests(unittest.TestCase):
+class ReportRecordTests(unittest.TestCase):
     def test_from_dict(self):
         d = {
             'Provider': 'APPLE',
