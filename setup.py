@@ -8,7 +8,9 @@ from setuptools import setup
 __author__ = 'Yusuke Miyazaki <miyazaki.dev@gmail.com>'
 __version__ = '0.1'
 
-requires = []
+requires = [
+    'pandas>=0.17.0'
+]
 
 if sys.version_info < (3, 4):
     requires.append('enum34>=1.0')
@@ -23,6 +25,7 @@ setup(
     test_suite='tests',
     install_requires=requires,
     classifiers=[
+        'Development Status :: 2 - Pre-Alpha',
         'Programming Language :: Python'
     ]
 )
