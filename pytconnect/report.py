@@ -20,14 +20,14 @@ class ProductTypeIdentifier(Enum):
     mac_install = "F1"
     mac_update = "F7"
     mac_in_app_purchase = "FI1"
-    ios_in_app_purchase = "IA1"
-    mac_in_app_purchase = "IA1-M"
-    ios_in_app_subscription = "IA9"
-    mac_in_app_subscription = "IA9-M"
-    ios_in_app_free_subscription = "IAC"
-    mac_in_app_free_subscription = "IAC-M"
-    ios_in_app_auto_renewable_subscription = "IAY"
-    mac_in_app_auto_renewable_subscription = "IAY-M"
+    ios_in_app_purchase_purchase = "IA1"
+    mac_in_app_purchase_purchase = "IA1-M"
+    ios_in_app_purchase_subscription = "IA9"
+    mac_in_app_purchase_subscription = "IA9-M"
+    ios_in_app_purchase_free_subscription = "IAC"
+    mac_in_app_purchase_free_subscription = "IAC-M"
+    ios_in_app_purchase_auto_renewable_subscription = "IAY"
+    mac_in_app_purchase_auto_renewable_subscription = "IAY-M"
 
 
 class PromotionalCode(Enum):
