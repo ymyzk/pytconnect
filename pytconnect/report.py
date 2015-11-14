@@ -88,7 +88,7 @@ def load_file(name):
         df[name] = df[name].astype(int)
     for name in series_names_casted_to_float:
         df[name] = df[name].astype(float)
-    df["version"].apply(lambda v: tuple(map(int, v.split(".")))
-                        if v != "nan" else ())
+    df.version = df.version.apply(lambda v: tuple(map(int, v.split(".")))
+                                  if v != "" and v != "nan" else ())
 
     return df
