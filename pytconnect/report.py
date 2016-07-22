@@ -65,14 +65,14 @@ def load_file(name):
        "end_date", "customer_currency", "country_code", "currency_of_proceeds",
        "apple_identifier", "customer_price", "promo_code", "parent_identifier",
        "subscription", "period", "category", "cmb", "device",
-       "supported_platforms")
+       "supported_platforms", "proceeds_reason")
     series_names_casted_to_datetime = ("begin_date", "end_date")
     series_names_casted_to_str = (
         "provider", "provider_country", "sku", "developer", "title", "version",
         "product_type_identifier", "customer_currency", "country_code",
         "currency_of_proceeds", "promo_code", "parent_identifier",
         "subscription", "period", "category", "cmb", "device",
-        "supported_platforms")
+        "supported_platforms", "proceeds_reason")
     series_names_casted_to_int = ("units", "apple_identifier")
     series_names_casted_to_float = ("developer_proceeds", "customer_price")
 
